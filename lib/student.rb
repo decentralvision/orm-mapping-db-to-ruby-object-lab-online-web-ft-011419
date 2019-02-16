@@ -50,6 +50,10 @@ class Student
   def self.students_below_12th_grade
     DB[:conn].execute("SELECT * FROM students WHERE grade < '12'").collect {|row| self.new_from_db(row)}
   end
+  def self.first_X_students_in_grade_10(num)
+    DB[:conn].execute("SELECT * FROM students WHERE grade = '10' LIMIT ?", num)
+  end
+
   def self.drop_table
     sql = "DROP TABLE IF EXISTS students"
     DB[:conn].execute(sql)
