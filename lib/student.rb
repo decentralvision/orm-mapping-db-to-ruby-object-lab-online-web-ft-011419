@@ -47,8 +47,7 @@ class Student
   end
 
   def self.students_below_12th_grade
-    DB[:conn].execute("SELECT * FROM students WHERE grade < '12'").each {|student| self.new_from_db(student)}
-    binding.pry
+    DB[:conn].execute("SELECT * FROM students WHERE grade < '12'").each {|row| self.new_from_db(row)}
   end
   def self.drop_table
     sql = "DROP TABLE IF EXISTS students"
