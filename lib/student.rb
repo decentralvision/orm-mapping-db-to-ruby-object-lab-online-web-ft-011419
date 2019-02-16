@@ -19,7 +19,6 @@ class Student
     # return a new instance of the Student class
     row = DB[:conn].execute("SELECT * FROM students WHERE name = ?", name).first
     student = self.new_from_db(row)
-    binding.pry
   end
 
   def save
